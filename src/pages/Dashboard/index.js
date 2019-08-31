@@ -4,7 +4,6 @@ import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { format, subDays, addDays } from 'date-fns';
 
-// import Header from '~/components/Header';
 import Loading from '~/components/Loading';
 import Meetup from '~/components/Meetup';
 
@@ -14,7 +13,6 @@ import {
   DateButton,
   DateText,
   Empty,
-  EmptyText,
   List,
 } from './styles';
 import api from '~/services/api';
@@ -33,13 +31,16 @@ function Dashboard({ isFocused }) {
     const response = await api.get('meetups', {
       params: { date, page: selectedPage },
     });
-    console.tron.log(response.data);
-
+    console.tron.log('teste', response.data);
+    setMeetups(response.data);
+    console.tron.log('hehe', meetups);
     setMeetups(
       selectedPage > 1
         ? [...meetups, ...response.data.rows]
         : response.data.rows
     );
+    console.tron.log('hehe', meetups);
+
     setHasMore(response.data.total_pages > selectedPage);
     setPage(selectedPage);
     setLoading(false);
@@ -103,7 +104,6 @@ function Dashboard({ isFocused }) {
           ) : (
             <Empty>
               <Icon name="event-busy" size={45} color="rgba(0, 0, 0, .15)" />
-              <EmptyText>Nenhum meetapp nesse dia.</EmptyText>
             </Empty>
           ))}
       </Container>

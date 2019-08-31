@@ -30,12 +30,6 @@ export const Empty = styled.View`
   margin-bottom: 30px;
 `;
 
-export const EmptyText = styled.Text`
-  font-size: 14px;
-  color: #333;
-  margin-top: 15px;
-`;
-
 export const List = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
 })``;
